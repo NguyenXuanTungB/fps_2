@@ -1,189 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="com.framgia.project1.fps_2_project.ui.activity.EditImageActivity">
 
-    <android.opengl.GLSurfaceView
-        android:id="@+id/effectsview"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <ImageView
+        android:id="@+id/image_edit"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/btnSave"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/scrollView"/>
+        android:layout_weight="0.8"
+        android:gravity="center_vertical"/>
 
-    <HorizontalScrollView
-        android:id="@+id/scrollView"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="@dimen/dimen_200"
+        android:layout_weight="0.1">
 
         <LinearLayout
+            android:id="@+id/layout_seek"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="@dimen/layout_300"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/contrast_icon"/>
+
+                <SeekBar
+                    android:id="@+id/seekBar_constrast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/layout_300"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/brightness"/>
+
+                <SeekBar
+                    android:id="@+id/seekBar_brightness"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/layout_300"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/custom_dialog_height"
+                    android:layout_height="@dimen/custom_dialog_height"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/hue"/>
+
+                <SeekBar
+                    android:id="@+id/seekBar_hue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <Button
-                android:id="@+id/none"
+                android:id="@+id/saveSeekBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/none"/>
-
-            <Button
-                android:id="@+id/brightness"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/brightness"/>
-
-            <Button
-                android:id="@+id/autofix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/autofix"/>
-
-            <Button
-                android:id="@+id/bw"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/bw"/>
-
-            <Button
-                android:id="@+id/grayscale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/grayscale"/>
-
-            <Button
-                android:id="@+id/contrast"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/contrast"/>
-
-            <Button
-                android:id="@+id/filllight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/filllight"/>
-
-            <Button
-                android:id="@+id/documentary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/documentary"/>
-
-            <Button
-                android:id="@+id/crossprocess"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/crossprocess"/>
-
-            <Button
-                android:id="@+id/fliphor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/fliphor"/>
-
-            <Button
-                android:id="@+id/grain"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/grain"/>
-
-            <Button
-                android:id="@+id/vignette"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/vignette"/>
-
-            <Button
-                android:id="@+id/duotone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/duotone"/>
-
-            <Button
-                android:id="@+id/lomoish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lomoish"/>
-
-            <Button
-                android:id="@+id/fisheye"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/fisheye"/>
-
-            <Button
-                android:id="@+id/flipvert"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/flipvert"/>
-
-            <Button
-                android:id="@+id/temperature"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/temperature"/>
-
-            <Button
-                android:id="@+id/rotate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/rotate"/>
-
-            <Button
-                android:id="@+id/saturate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/saturate"/>
-
-            <Button
-                android:id="@+id/sepia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sepia"/>
-
-            <Button
-                android:id="@+id/negative"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/negative"/>
-
-            <Button
-                android:id="@+id/sharpen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sharpen"/>
-
-            <Button
-                android:id="@+id/posterize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/posterize"/>
-
-            <Button
-                android:id="@+id/tint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tint"/>
+                android:text="@string/ok"/>
         </LinearLayout>
-    </HorizontalScrollView>
 
-    <Button
-        android:id="@+id/btnSave"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/save_button"/>
-
-</RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_adjust"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"/>
+    </FrameLayout>
+</LinearLayout>

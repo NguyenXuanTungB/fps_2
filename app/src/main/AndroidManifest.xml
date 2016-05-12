@@ -35,7 +35,11 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".ui.activity.EditImageActivity"/>
+        <activity
+            android:name=".ui.activity.EditImageActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <activity
             android:name=".ui.activity.ChoosePhotoActivity"
             android:parentActivityName=".ui.activity.MainActivity"
@@ -44,13 +48,11 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
-
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-
         <provider
             android:name="com.facebook.FacebookContentProvider"
             android:authorities="com.facebook.app.FacebookContentProvider1705159863029321"
@@ -65,7 +67,8 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ui.activity.CropImageActivity"
-            android:theme="@style/Theme.AppCompat"/>
-    </application>
+            android:theme="@style/AppTheme.NoActionBar">
 
+        </activity>
+    </application>
 </manifest>

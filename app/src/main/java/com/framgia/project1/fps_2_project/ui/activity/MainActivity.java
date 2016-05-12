@@ -15,6 +15,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -38,6 +39,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity implements Constant {
     private static final int FUNCTION_MERGEPHOTO = 1;
     private static final int FUNCTION_MAKEVIDEO = 2;
+    private final int mSelectPhoto = 100;
     int REQUEST_CAMERA = 0, SELECT_FILE = 1;
     private ImageButton mMergePhotoButton;
     private ImageButton mMakeVideoButton;
@@ -89,8 +91,9 @@ public class MainActivity extends AppCompatActivity implements Constant {
         findViewById(R.id.button_sketch).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, EditImageActivity.class);
-                startActivity(intent);
+                Intent photoPickIntent = new Intent(Intent.ACTION_PICK);
+                photoPickIntent.setType("image/*");
+                startActivityForResult(photoPickIntent, mSelectPhoto);
             }
         });
         mMergePhotoButton = (ImageButton) findViewById(R.id.button_merge_image);
@@ -152,6 +155,21 @@ public class MainActivity extends AppCompatActivity implements Constant {
                 startActivityForResult(cameraIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
             }
         }
+        if (requestCode == mSelectPhoto) {
+            if (resultCode == RESULT_OK) {
+                Uri uriImage = data.getData();
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                Cursor cursor =
+                    getContentResolver().query(uriImage, filePathColumn, null, null, null);
+                cursor.moveToFirst();
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                String mAvatar = cursor.getString(columnIndex);
+                cursor.close();
+                EditImageActivity.sBitmap = BitmapFactory.decodeFile(mAvatar);
+                Intent intent = new Intent(MainActivity.this, EditImageActivity.class);
+                startActivity(intent);
+            }
+        }
     }
 
     private void onSelectFromGalleryResult(Intent data) {
@@ -204,6 +222,6 @@ public class MainActivity extends AppCompatActivity implements Constant {
             .addPhoto(photo)
             .build();
         mShareDialog.show(content);
-        startActivity(new Intent(MainActivity.this, ChooseFrameActivity.class));
+        //   startActivity(new Intent(MainActivity.this, ChooseFrameActivity.class));
     }
 }

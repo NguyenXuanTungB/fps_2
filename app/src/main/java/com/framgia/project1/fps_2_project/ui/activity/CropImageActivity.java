@@ -12,11 +12,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.framgia.project1.fps_2_project.R;
@@ -33,6 +35,7 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import java.util.ArrayList;
 
 public class CropImageActivity extends AppCompatActivity implements MyOnClickListener, Constant {
+    private Toolbar mToolbar;
     private ActionBar mActionBar;
     private String[] mTITLES;
     private MainFragment mCurrentFragment;
@@ -51,9 +54,12 @@ public class CropImageActivity extends AppCompatActivity implements MyOnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crop_image);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_crop);
+        setSupportActionBar(mToolbar);
         mActionBar = getSupportActionBar();
-        mTITLES = this.getResources().getStringArray(R.array.list_option);
         mActionBar.setDisplayHomeAsUpEnabled(true);
+        mActionBar.setHomeButtonEnabled(true);
+        mTITLES = this.getResources().getStringArray(R.array.list_option);
         initViews();
         if (savedInstanceState == null) {
             setMainFragmentByPreset(CropDemoPreset.RECT);
@@ -86,7 +92,7 @@ public class CropImageActivity extends AppCompatActivity implements MyOnClickLis
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
+        inflater.inflate(R.menu.crop_menu, menu);
         return true;
     }
 

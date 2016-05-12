@@ -133,21 +133,32 @@ public final class MainFragment extends Fragment
         updateCurrentCropViewOptions();
         if (savedInstanceState == null) {
             if (mDemoPreset == CropDemoPreset.SCALE_CENTER_INSIDE) {
-                mCropImageView.setImageResource(R.drawable.usb_android);
+                mCropImageView.setImageBitmap(EditImageActivity.sBitmap);
             } else {
-                mCropImageView.setImageResource(R.drawable.usb_android);
+                mCropImageView.setImageBitmap(EditImageActivity.sBitmap);
             }
         }
     }
 
+    public void ok() {
+        mCropImageView.getCroppedImageAsync();
+        EditImageActivity.sBitmap = mCropImageView.getCroppedImage();
+        getActivity().finish();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.main_action_crop) {
-            mCropImageView.getCroppedImageAsync();
-            return true;
-        } else if (item.getItemId() == R.id.main_action_rotate) {
-            mCropImageView.rotateImage(90);
-            return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                getActivity().finish();
+                break;
+            case R.id.save_image_crop:
+                mCropImageView.getCroppedImageAsync();
+                EditImageActivity.sBitmap = mCropImageView.getCroppedImage();
+                getActivity().finish();
+                break;
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

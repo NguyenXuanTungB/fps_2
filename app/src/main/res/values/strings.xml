@@ -103,4 +103,11 @@
     <string name="main_action_crop">CROP</string>
     <string name="main_action_rotate">Rotate 90 degrees clockwise</string>
     <string name="video_exist">This name exist ! Enter other name</string>
+    <string name="gradient1">#FFD900</string>
+    <string name="gradient2">#FF5300</string>
+    <string name="gradient3">#FF0D00</string>
+    <string name="gradient4">#AD009F</string>
+    <string name="gradient5">#1924B1</string>
+    <string name="ok">Ok</string>
+    <string name="crop_image">Crop Image</string>
 </resources>
